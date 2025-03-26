@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 25, 2025 at 01:32 PM
+-- Generation Time: Mar 26, 2025 at 05:26 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -70,6 +70,19 @@ CREATE TABLE `pet_media` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `pet_photos`
+--
+
+CREATE TABLE `pet_photos` (
+  `photo_id` int(11) NOT NULL,
+  `pet_id` int(11) DEFAULT NULL,
+  `photo_url` varchar(255) NOT NULL,
+  `uploaded_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `shelters`
 --
 
@@ -122,6 +135,13 @@ ALTER TABLE `pet_media`
   ADD KEY `pet_id` (`pet_id`);
 
 --
+-- Indexes for table `pet_photos`
+--
+ALTER TABLE `pet_photos`
+  ADD PRIMARY KEY (`photo_id`),
+  ADD KEY `pet_id` (`pet_id`);
+
+--
 -- Indexes for table `shelters`
 --
 ALTER TABLE `shelters`
@@ -157,6 +177,12 @@ ALTER TABLE `pet_media`
   MODIFY `media_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `pet_photos`
+--
+ALTER TABLE `pet_photos`
+  MODIFY `photo_id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `shelters`
 --
 ALTER TABLE `shelters`
@@ -176,7 +202,7 @@ ALTER TABLE `users`
 -- Constraints for table `adoption_applications`
 --
 ALTER TABLE `adoption_applications`
-  ADD CONSTRAINT `adoption_applications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `adoption_applications_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`) ON DELETE SET NULL,
   ADD CONSTRAINT `adoption_applications_ibfk_2` FOREIGN KEY (`pet_id`) REFERENCES `pets` (`pet_id`) ON DELETE CASCADE;
 
 --
@@ -190,6 +216,12 @@ ALTER TABLE `pets`
 --
 ALTER TABLE `pet_media`
   ADD CONSTRAINT `pet_media_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pets` (`pet_id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `pet_photos`
+--
+ALTER TABLE `pet_photos`
+  ADD CONSTRAINT `pet_photos_ibfk_1` FOREIGN KEY (`pet_id`) REFERENCES `pets` (`pet_id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

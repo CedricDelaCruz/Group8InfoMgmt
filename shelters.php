@@ -11,16 +11,17 @@ $result = $conn->query($sql);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pet Shelters</title>
+    <title>Match My Pet - Parterned Pet Shelters</title>
     <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
     <header>
-        <h1>Registered Pet Shelters</h1>
+        <h1>🐶 Match My Pet 🐱</h1>
         <nav>
             <a href="index.php">Home</a>
             <a href="adopt.php">Adopt</a>
             <a href="shelters.php">Shelters</a>
+            <a href="about.php">About Us</a>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <a href="logout.php">Logout</a>
             <?php else: ?>

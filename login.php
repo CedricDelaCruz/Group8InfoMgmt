@@ -36,26 +36,44 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Match My Pet - Login</title>
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h2>Login</h2>
+    <header>
+        <h1>🐶 Match My Pet 🐱</h1>
+        <nav>
+            <a href="index.php">Home</a>
+            <a href="adopt.php">Adopt</a>
+            <a href="shelters.php">Shelters</a>
+            <a href="about.php">About Us</a>
+            <a href="login.php">Login</a>
+            <a href="register.php">Register</a>
+        </nav>
+    </header>
 
-    <?php if (!empty($message)): ?>
-        <p class="error-message"><?= $message ?></p>
-    <?php endif; ?>
+    <section class="login-form">
+        <h2>Login to Your Account</h2>
+        
+        <?php if (!empty($message)): ?>
+            <p class="error-message"><?= $message ?></p>
+        <?php endif; ?>
 
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+        <?php if (isset($error)) echo "<p class='error-message'>$error</p>"; ?>
+        
+        <form action="" method="POST" class="form-container">
+            <label>Email:</label>
+            <input type="email" name="email" required>
+            <label>Password:</label>
+            <input type="password" name="password" required>
+            <button type="submit">Login</button>
+        </form>
+    </section>
+
+    <p class="register-link">Don't have an account? <a href="register.php">Register here</a></p>
     
-    <form action="" method="POST">
-        <label>Email:</label>
-        <input type="email" name="email" required><br>
-        <label>Password:</label>
-        <input type="password" name="password" required><br>
-        <button type="submit">Login</button>
-    </form>
-
-    <p>Don't have an account? <a href="register.php">Register here</a></p>
+    <footer>
+        <p>&copy; 2025 Pet Adoption Website</p>
+    </footer>
 </body>
 </html>
